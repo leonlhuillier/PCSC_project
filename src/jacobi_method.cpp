@@ -3,6 +3,9 @@
 #include <iostream>
 #include <limits>
 
+// Define PI constant for portability (M_PI is not standard)
+constexpr double PI = 3.141592653589793;
+
 std::vector<double> JacobiMethod::compute(
     const Matrix& A,
     size_t max_iterations,
@@ -77,7 +80,7 @@ Matrix JacobiMethod::jacobiRotation(const Matrix& A, size_t p, size_t q) {
     // Compute rotation angle
     double theta;
     if (std::abs(a_pp - a_qq) < 1e-10) {
-        theta = M_PI / 4.0;
+        theta = PI / 4.0;
     } else {
         theta = 0.5 * std::atan2(2.0 * a_pq, a_qq - a_pp);
     }
