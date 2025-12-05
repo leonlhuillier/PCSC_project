@@ -1,0 +1,37 @@
+# Build artifacts
+build/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Executables
+eigenvalue_demo
+eigenvalue_tests
+*.exe
+*.out
+*.app
+
+# IDE files
+.idea/
+*.cbp
+*.user
+*.suo
+*.sdf
+
+# Object files
+*.o
+*.obj
+*.lo
+*.slo
+
+# Libraries
+*.a
+*.lib
+*.so
+*.dylib
+
+# Temporary files
+*~
+.DS_Store
