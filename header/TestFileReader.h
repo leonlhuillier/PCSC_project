@@ -1,8 +1,19 @@
-//
-// Created by 32484 on 05-12-25.
-//
+#ifndef TESTFILEREADER_H
+#define TESTFILEREADER_H
 
-#ifndef PCSC_EXERCISES_TESTFILEREADER_H
-#define PCSC_EXERCISES_TESTFILEREADER_H
+#include "Reader.h"
 
-#endif //PCSC_EXERCISES_TESTFILEREADER_H
+
+class TestFileReader : public Reader {
+public:
+    // Constructors and Destructors
+    TestFileReader(const std::string & filename);
+    virtual ~TestFileReader();
+
+    // Public Method
+    virtual Parameters ReadParameters() override;
+    virtual Eigen::MatrixXd ReadMatrix() override;
+};
+
+
+#endif //TESTFILEREADER_H

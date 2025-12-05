@@ -1,8 +1,16 @@
-//
-// Created by 32484 on 05-12-25.
-//
+#ifndef WRITER_H
+#define WRITER_H
 
-#ifndef PCSC_EXERCISES_WRITER_H
-#define PCSC_EXERCISES_WRITER_H
+#include <Eigen/Dense>
 
-#endif //PCSC_EXERCISES_WRITER_H
+class Writer {
+public:
+    // Constructor and Destructor
+    Writer();
+    virtual ~Writer();
+
+    // Pure Virtual Method
+    virtual void Write() = 0;
+};
+
+#endif // WRITER_H

@@ -1,8 +1,21 @@
-//
-// Created by 32484 on 05-12-25.
-//
+#ifndef PLOTWRITER_H
+#define PLOTWRITER_H
 
-#ifndef PCSC_EXERCISES_PLOTWRITTER_H
-#define PCSC_EXERCISES_PLOTWRITTER_H
+#include <string>
 
-#endif //PCSC_EXERCISES_PLOTWRITTER_H
+#include "Writer.h"
+
+class PlotWriter : public Writer {
+public:
+    // Constructors and Destructors
+    PlotWriter(const std::string & filename);
+    virtual ~PlotWriter();
+
+    // Public virtual Method
+    virtual void Write() override;
+
+private:
+    std::string mFilename;
+};
+
+#endif //PLOTWRITER_H

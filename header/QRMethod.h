@@ -1,8 +1,17 @@
-//
-// Created by 32484 on 05-12-25.
-//
+#ifndef QRMETHOD_H
+#define QRMETHOD_H
 
-#ifndef PCSC_EXERCISES_QRMETHOD_H
-#define PCSC_EXERCISES_QRMETHOD_H
+#include "Eigenvalue.h"
 
-#endif //PCSC_EXERCISES_QRMETHOD_H
+class QRMethod : public Eigenvalue {
+public:
+    // Constructors and Destructor
+    QRMethod();
+    QRMethod(const Eigen::MatrixXd& matrix, int maxIter, double tolerance);
+    virtual ~QRMethod();
+
+    // Overridden Method
+    virtual void solve() override;
+};
+
+#endif // QRMETHOD_H

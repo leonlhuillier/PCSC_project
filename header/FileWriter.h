@@ -1,8 +1,21 @@
-//
-// Created by 32484 on 05-12-25.
-//
+#ifndef FILEWRITER_H
+#define FILEWRITER_H
 
-#ifndef PCSC_EXERCISES_FILEWRITER_H
-#define PCSC_EXERCISES_FILEWRITER_H
+#include <string>
 
-#endif //PCSC_EXERCISES_FILEWRITER_H
+#include "Writer.h"
+
+class FileWriter : public Writer {
+public:
+    // Constructors and Destructors
+    FileWriter(const std::string & filename);
+    virtual ~FileWriter();
+
+    // Public virtual Method
+    virtual void Write() override;
+
+private:
+    std::string mFilename;
+};
+
+#endif //FILEWRITER_H

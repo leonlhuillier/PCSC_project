@@ -20,6 +20,9 @@ public:
 protected:
     // Protected Member Variable
     std::string mFilename;
+
+private:
+    bool FileExists(const std::string & filename) const;
 };
 
 #endif // READER_H

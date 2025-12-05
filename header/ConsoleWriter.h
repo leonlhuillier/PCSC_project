@@ -1,8 +1,19 @@
-//
-// Created by 32484 on 05-12-25.
-//
+#ifndef CONSOLEWRITER_H
+#define CONSOLEWRITER_H
 
-#ifndef PCSC_EXERCISES_CONSOLEWRITER_H
-#define PCSC_EXERCISES_CONSOLEWRITER_H
+#include <string>
 
-#endif //PCSC_EXERCISES_CONSOLEWRITER_H
+#include "Writer.h"
+
+class ConsoleWriter : public Writer {
+public:
+    // Constructors and Destructors
+    ConsoleWriter();
+    virtual ~ConsoleWriter();
+
+    // Public virtual Method
+    virtual void Write() override;
+
+};
+
+#endif //CONSOLEWRITER_H
