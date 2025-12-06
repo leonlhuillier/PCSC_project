@@ -2,35 +2,43 @@
 #define EIGENVALUE_H
 
 #include <Eigen/Dense>
-#include <string>
+#include <complex>
+#include "Parameters.h"
 
+template<typename Scalar = double>
 class Eigenvalue {
 public:
+    using Matrix = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
+    using Vector = Eigen::Matrix<Scalar, Eigen::Dynamic, 1>;
+    using RealScalar = typename Eigen::NumTraits<Scalar>::Real;
+
     // Constructors and Destructor
-    Eigenvalue();
+    Eigenvalue(const Matrix& matrix, const Parameters& params);
     virtual ~Eigenvalue();
 
     // Public Methods
     virtual void solve() = 0;
     void setTolerance(double tolerance);
+    void setMatrix(const Matrix& matrix);
     void setMaxIteration(int maxIteration);
     bool hasConverged() const;
-    double getEigenvalue() const;
+    Scalar getEigenvalue() const;
+    Vector getEigenvector() const;
     double getTolerance() const;
     int getMaxIteration() const;
-    Eigen::VectorXd getEigenvector() const;
-
-    // Loading Methods
-    void loadFromFile(const std::string& filename);
-    void saveToFile(const std::string& filename);
+    int getIterationCount() const;
 
 protected:
-    // Protected Member Variables
-    Eigen::MatrixXd mMatrix;
-    Eigen::VectorXd mEigenvector;
-    double mEigenvalue;
+    Matrix mMatrix;
+    Vector mEigenvector;
+    Scalar mEigenvalue;
     int mMaxIteration;
     double mTolerance;
+    bool mConverged;
+    int mIterationCount;
 };
 
-#endif //EIGENVALUE_H
+using EigenvalueReal = Eigenvalue<double>;
+using EigenvalueComplex = Eigenvalue<std::complex<double>>;
+
+#endif // EIGENVALUE_H
