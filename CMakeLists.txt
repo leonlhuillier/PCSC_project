@@ -19,10 +19,23 @@ FetchContent_MakeAvailable(Eigen)
 
 # Add directories for headers
 include_directories(${CMAKE_SOURCE_DIR}/header)
-include_directories(${EIGEN3_INCLUDE_DIR})
 
-# Define ONLY source files (.cpp)
-set(SOURCE_FILES
+# ========================================
+# TEST EXECUTABLE
+# ========================================
+add_executable(test_textreader
+        Source/TextFileReader.cpp
+        Source/Reader.cpp
+        Source/Parameters.cpp
+)
+
+target_link_libraries(test_textreader PRIVATE Eigen3::Eigen)
+
+# ========================================
+# MAIN EXECUTABLE (if you have main.cpp)
+# ========================================
+set(COMMON_SOURCES
+        Source/Parameters.cpp
         Source/Eigenvalue.cpp
         Source/PowerMethod.cpp
         Source/ShiftedInversePowerMethod.cpp
@@ -34,11 +47,11 @@ set(SOURCE_FILES
         Source/FileWriter.cpp
         Source/ConsoleWriter.cpp
         Source/PlotWriter.cpp
-        main.cpp
 )
 
-# Create the executable
-add_executable(PCSC_project ${SOURCE_FILES})
+add_executable(PCSC_project
+        main.cpp
+        ${COMMON_SOURCES}
+)
 
-# Link Eigen
-target_link_libraries(PCSC_project Eigen3::Eigen)
+target_link_libraries(PCSC_project PRIVATE Eigen3::Eigen)

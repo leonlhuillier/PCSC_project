@@ -3,26 +3,41 @@
 
 #include <Eigen/Dense>
 #include <string>
+#include <complex>
+#include "Parameters.h"
 
-// Assuming 'Parameters' is a struct or class you will define later for config
-struct Parameters {};
 
+template<typename Scalar = double>
 class Reader {
 public:
+    using Matrix = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
+
+    // File type enum
+    enum class FileType {
+        CSV,
+        TEXT,
+        UNKNOWN
+    };
+
     // Constructor and Destructor
     Reader(const std::string& filename);
     virtual ~Reader();
 
     // Pure Virtual Methods
     virtual Parameters ReadParameters() = 0;
-    virtual Eigen::MatrixXd ReadMatrix() = 0;
+    virtual Matrix ReadMatrix() = 0;
+
+    // File type methods
+    FileType GetFileType() const;
+    std::string GetFileTypeString() const;
 
 protected:
-    // Protected Member Variable
     std::string mFilename;
-
-private:
-    bool FileExists(const std::string & filename) const;
+    FileType mFileType;
 };
+
+// Type aliases
+using ReaderReal = Reader<double>;
+using ReaderComplex = Reader<std::complex<double>>;
 
 #endif // READER_H
