@@ -1,3 +1,8 @@
-//
-// Created by 32484 on 05-12-25.
-//
+#include "Writer.h"
+#include <iostream>
+
+// Constructor
+Writer::Writter(){}
+
+// Destructor
+Writer::~Writter {}
