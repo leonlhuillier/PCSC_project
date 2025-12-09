@@ -53,7 +53,7 @@ typename CSVReader<Scalar>::Matrix CSVReader<Scalar>::ReadMatrix() {
     if (!file.is_open()) {
         throw std::runtime_error("Opening CSV file failed");
     }
-    std::vector<std::vector<double>> matrixData;
+    std::vector<std::vector<Scalar>> matrixData;
     std::string line;
 
     while (std::getline(file, line)){
@@ -66,7 +66,7 @@ typename CSVReader<Scalar>::Matrix CSVReader<Scalar>::ReadMatrix() {
 
 
         //Pour chaque ligne, on découpe avec la virgule , et on convertit chaque morceau en double, pour recuperer les lignes de la matric
-        std::vector<double> row;
+        std::vector<Scalar> row;
         std::stringstream ss(line);
         std::string value;
 
