@@ -47,6 +47,7 @@ set(COMMON_SOURCES
         Source/FileWriter.cpp
         Source/ConsoleWriter.cpp
         Source/PlotWriter.cpp
+        header/PowerMethod.h
 )
 
 add_executable(PCSC_project
