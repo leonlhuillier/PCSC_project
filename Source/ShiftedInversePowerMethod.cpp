@@ -70,7 +70,7 @@ void ShiftedInversePowerMethod<Scalar>::solve() {
         x_k_plus_1.normalize();
 
         // 4. Transform back to the eigenvalue of A: lambda_A = mu + 1/mu_prime
-        Scalar lambda_k_plus_1 = static_cast<Scalar>(this->mShift) + (Scalar(1.0) / mu_prime_k_plus_1);
+        Scalar lambda_k_plus_1 = this->mShift + (Scalar(1.0) / mu_prime_k_plus_1);
 
         // 5. Check for convergence based on the inverse eigenvalue (mu_prime)
         // This is typically more stable than checking lambda_A directly.
@@ -89,7 +89,7 @@ void ShiftedInversePowerMethod<Scalar>::solve() {
     if (!this->mConverged) {
         std::cerr << "ShiftedInversePowerMethod failed to converge after " << this->mMaxIteration << " iterations." << std::endl;
         // Calculate the final eigenvalue result
-        this->mEigenvalue = static_cast<Scalar>(this->mShift) + (Scalar(1.0) / mu_prime_k);
+        this->mEigenvalue = this->mShift + (Scalar(1.0) / mu_prime_k);
         this->mEigenvector = x_k;
     }
 }
