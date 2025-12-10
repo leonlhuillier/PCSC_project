@@ -5,7 +5,7 @@
 #include <complex>
 #include "Parameters.h"
 
-template<typename Scalar = double>
+template<typename Scalar>
 class Eigenvalue {
 public:
     using Matrix = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
@@ -25,13 +25,16 @@ public:
     Scalar getEigenvalue() const;
     Vector getEigenvector() const;
     double getTolerance() const;
-    int getMaxIteration() const;
+    int getMaxIterations() const;
     int getIterationCount() const;
+    bool IsInvertible() const;
+
 
 protected:
     Matrix mMatrix;
     Vector mEigenvector;
     Scalar mEigenvalue;
+    Scalar mShift;
     int mMaxIteration;
     double mTolerance;
     bool mConverged;

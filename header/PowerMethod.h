@@ -3,10 +3,11 @@
 
 #include "Eigenvalue.h"
 
-class PowerMethod : public Eigenvalue {
+template<typename Scalar>
+class PowerMethod : public Eigenvalue<Scalar> {
 public:
     // Constructors and Destructor
-    PowerMethod(); [cite_start]
+    PowerMethod();
     PowerMethod(const Eigen::MatrixXd& matrix, int maxIter, double tolerance);
     virtual ~PowerMethod();
 

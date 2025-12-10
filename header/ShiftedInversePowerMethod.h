@@ -3,7 +3,8 @@
 
 #include "Eigenvalue.h"
 
-class ShiftedInversePowerMethod : public Eigenvalue {
+template<typename Scalar>
+class ShiftedInversePowerMethod : public Eigenvalue<Scalar> {
 public:
     // Constructors and Destructor
     ShiftedInversePowerMethod();
