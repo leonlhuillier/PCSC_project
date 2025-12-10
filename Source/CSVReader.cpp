@@ -70,13 +70,19 @@ typename CSVReader<Scalar>::Matrix CSVReader<Scalar>::ReadMatrix() {
         std::stringstream ss(line);
         std::string value;
 
-        while (std::getline(ss, value, ',')) {
-            value=trim(value); //enlever espaces entre les nombres
-            row.push_back(std::stod(value));
-        }
+        char delimiter = (line.find(';') != std::string::npos) ? ';' : ',';
 
-        matrixData.push_back(row);
+        while (std::getline(ss, value, delimiter)) {
+            value=trim(value); //enlever espaces entre les nombres
+            if (!value.empty()) {
+                row.push_back(std::stod(value));
+            }
+        }
+        if (!row.empty()) {
+            matrixData.push_back(row);
+        }
     }
+
 
     file.close();
     // Convert vector to Eigen matrix
@@ -111,11 +117,17 @@ Parameters CSVReader<Scalar>::ReadParameters() {
     // Skip until "Algorithm" line
     while (std::getline(file, line)) {
         if (line.find("Algorithm") != std::string::npos) {
+            char delimiter = (line.find(';') != std::string::npos) ? ';' : ',';
+
             // Process this line first
             std::stringstream ss(line);
             std::string name, value;
-            std::getline(ss, name, ',');
-            std::getline(ss, value);
+            std::getline(ss, name, delimiter);
+            std::getline(ss, value, delimiter);
+
+            name = trim(name);
+            value = trim(value);
+
             params.setAlgorithm(value);
             break;
         }
@@ -125,11 +137,16 @@ Parameters CSVReader<Scalar>::ReadParameters() {
     while (std::getline(file, line)) {
         if (line.empty()) continue;
 
+        char delimiter = (line.find(';') != std::string::npos) ? ';' : ',';
+
         std::stringstream ss(line);
         std::string name, value;
 
-        std::getline(ss, name, ',');
-        std::getline(ss, value);
+        std::getline(ss, name, delimiter);
+        std::getline(ss, value,delimiter);
+
+        name = trim(name);
+        value = trim(value);
 
         if (name == "MaxIterations") {
             params.setMaxIterations(std::stoi(value));
@@ -146,6 +163,7 @@ Parameters CSVReader<Scalar>::ReadParameters() {
     return params;
 
 }
+
 template class CSVReader<double>;
 template class CSVReader<std::complex<double>>;
 

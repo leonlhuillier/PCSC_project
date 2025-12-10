@@ -5,7 +5,7 @@
 #include <complex>
 #include "Parameters.h"
 
-template<typename Scalar = double>
+template<typename Scalar>
 class Eigenvalue {
 public:
     using Matrix = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;

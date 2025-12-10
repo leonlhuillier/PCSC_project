@@ -7,7 +7,7 @@
 #include "Parameters.h"
 
 
-template<typename Scalar = double>
+template<typename Scalar>
 class Reader {
 public:
     using Matrix = Eigen::Matrix<Scalar, Eigen::Dynamic, Eigen::Dynamic>;
@@ -40,4 +40,4 @@ protected:
 using ReaderReal = Reader<double>;
 using ReaderComplex = Reader<std::complex<double>>;
 
-#endif // READER_H
+#endif // RE ADER_H

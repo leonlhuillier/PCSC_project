@@ -50,7 +50,7 @@ typename TextFileReader<Scalar>::Matrix TextFileReader<Scalar>::ReadMatrix() {
         throw std::runtime_error("Opening Text file failed");
     }
 
-    // ✅ FIXED: Use Scalar instead of double
+
     std::vector<std::vector<Scalar>> matrixData;
     std::string line;
 

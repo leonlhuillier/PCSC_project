@@ -23,13 +23,15 @@ include_directories(${CMAKE_SOURCE_DIR}/header)
 # ========================================
 # TEST EXECUTABLE
 # ========================================
-add_executable(test_textreader
+add_executable(test_reader
         Source/TextFileReader.cpp
+        Source/CSVReader.cpp
+        Source/test_reader.cpp
         Source/Reader.cpp
         Source/Parameters.cpp
 )
 
-target_link_libraries(test_textreader PRIVATE Eigen3::Eigen)
+target_link_libraries(test_reader PRIVATE Eigen3::Eigen)
 
 # ========================================
 # MAIN EXECUTABLE (if you have main.cpp)
@@ -47,7 +49,6 @@ set(COMMON_SOURCES
         Source/FileWriter.cpp
         Source/ConsoleWriter.cpp
         Source/PlotWriter.cpp
-        header/PowerMethod.h
 )
 
 add_executable(PCSC_project
