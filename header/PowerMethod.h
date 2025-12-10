@@ -3,11 +3,14 @@
 
 #include "Eigenvalue.h"
 
-class PowerMethod : public Eigenvalue {
+template<typename Scalar>
+class PowerMethod : public Eigenvalue<Scalar> {
 public:
+    using Matrix = typename Eigenvalue<Scalar>::Matrix;
+    using Vector = typename Eigenvalue<Scalar>::Vector;
     // Constructors and Destructor
-    PowerMethod(); [cite_start]
-    PowerMethod(const Eigen::MatrixXd& matrix, int maxIter, double tolerance);
+    PowerMethod();
+    PowerMethod(const Matrix& matrix, const Parameters& params);
     virtual ~PowerMethod();
 
     // Overridden Method

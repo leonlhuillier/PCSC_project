@@ -89,12 +89,12 @@ bool test_text_file(const std::string& filename ) {
 
 int main() {
 
-    if (test_csv_file<std::complex<double>>("../data/test_matrix.csv")) {
+    if (test_csv_file<std::complex<double>>("../data/test_matrix_power.csv")) {
         std::cout <<"Test csv file succeed";
     }
 
     // Test TXT
-    if (test_text_file<double>("../data/test_matrix.txt")){
+    if (test_text_file<double>("../data/test_matrix_power.txt")){
         std::cout <<"Test text file succeed";
     }
 

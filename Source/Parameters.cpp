@@ -20,8 +20,7 @@ void Parameters::setMatrixFile(const std::string& filename) {
 }
 void Parameters::setAlgorithm(const std::string& algorithm) {
     if (algorithm == "PowerMethod" ||
-        algorithm == "InversePowerMethod" ||
-        algorithm == "ShiftInversedPowerMethod" ||
+        algorithm == "ShiftedInversePowerMethod" ||
         algorithm == "QRMethod") {
 
         mAlgorithm = algorithm;
@@ -42,10 +41,6 @@ void Parameters::setTolerance(double tol) {
 }
 
 bool Parameters::validate() const {
-    if (mMatrixFile.empty()) {
-        std::cerr <<("Matrix file is empty")<< std::endl;
-        return false;
-    }
     if (mTolerance <= 0) {
         std::cerr << "Tolerance must be positive" << std::endl;
         return false;

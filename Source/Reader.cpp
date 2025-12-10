@@ -44,7 +44,6 @@ template<typename Scalar>
 typename Reader<Scalar>::FileType Reader<Scalar>::GetFileType() const {
     return mFileType;
 }
-
 template<typename Scalar>
 std::string Reader<Scalar>::GetFileTypeString() const {
     if (mFileType == FileType::CSV) return "CSV";

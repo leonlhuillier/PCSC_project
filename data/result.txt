@@ -1,0 +1,15 @@
+========================================
+     EIGENVALUE COMPUTATION RESULTS     
+========================================
+
+Convergence Status: CONVERGED
+Number of Iterations: 26
+
+Dominant Eigenvalue: 1.26795
+
+Corresponding Eigenvector:
+  v[0] = -0.211325
+  v[1] = -0.57735
+  v[2] = -0.788675
+
+========================================

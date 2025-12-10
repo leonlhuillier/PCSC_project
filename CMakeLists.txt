@@ -3,8 +3,11 @@ project(PCSC_project)
 
 # Standard C++ setting
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# ========================================
 # Fetch Eigen from GitLab
+# ========================================
 include(FetchContent)
 FetchContent_Declare(
         Eigen
@@ -17,43 +20,58 @@ set(BUILD_TESTING OFF CACHE BOOL "" FORCE)
 set(EIGEN_BUILD_PKGCONFIG OFF CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(Eigen)
 
+# ========================================
 # Add directories for headers
+# ========================================
 include_directories(${CMAKE_SOURCE_DIR}/header)
 
 # ========================================
-# TEST EXECUTABLE
-# ========================================
-add_executable(test_reader
-        Source/TextFileReader.cpp
-        Source/CSVReader.cpp
-        Source/test_reader.cpp
-        Source/Reader.cpp
-        Source/Parameters.cpp
-)
-
-target_link_libraries(test_reader PRIVATE Eigen3::Eigen)
-
-# ========================================
-# MAIN EXECUTABLE (if you have main.cpp)
+# COMMON SOURCES (pour éviter la répétition)
 # ========================================
 set(COMMON_SOURCES
         Source/Parameters.cpp
         Source/Eigenvalue.cpp
         Source/PowerMethod.cpp
         Source/ShiftedInversePowerMethod.cpp
-        Source/QRMethod.cpp
         Source/Reader.cpp
         Source/CSVReader.cpp
         Source/TextFileReader.cpp
         Source/Writer.cpp
-        Source/FileWriter.cpp
-        Source/ConsoleWriter.cpp
-        Source/PlotWriter.cpp
 )
 
+# ========================================
+# TEST EXECUTABLES
+# ========================================
+
+# Test Reader
+add_executable(test_reader
+        Source/test_reader.cpp
+        Source/TextFileReader.cpp
+        Source/CSVReader.cpp
+        Source/Reader.cpp
+        Source/Parameters.cpp
+)
+target_link_libraries(test_reader PRIVATE Eigen3::Eigen)
+
+# Test Power Method
+add_executable(test_powermethod
+        Source/test_powermethod.cpp
+        ${COMMON_SOURCES}
+)
+target_link_libraries(test_powermethod PRIVATE Eigen3::Eigen)
+
+# Test Shifted Inverse Power Method
+add_executable(test_ShiftInversepm
+        Source/test_ShiftInversepm.cpp
+        ${COMMON_SOURCES}
+)
+target_link_libraries(test_ShiftInversepm PRIVATE Eigen3::Eigen)
+
+# ========================================
+# MAIN EXECUTABLE
+# ========================================
 add_executable(PCSC_project
         main.cpp
         ${COMMON_SOURCES}
 )
-
 target_link_libraries(PCSC_project PRIVATE Eigen3::Eigen)

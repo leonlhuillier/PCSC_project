@@ -3,11 +3,14 @@
 
 #include "Eigenvalue.h"
 
-class ShiftedInversePowerMethod : public Eigenvalue {
+template<typename Scalar>
+class ShiftedInversePowerMethod : public Eigenvalue<Scalar> {
 public:
+    using Matrix = typename Eigenvalue<Scalar>::Matrix;
+    using Vector = typename Eigenvalue<Scalar>::Vector;
     // Constructors and Destructor
     ShiftedInversePowerMethod();
-    ShiftedInversePowerMethod(const Eigen::MatrixXd& matrix, int maxIter, double tolerance);
+    ShiftedInversePowerMethod(const Matrix& matrix, const Parameters& params);
     virtual ~ShiftedInversePowerMethod();
 
     // Overridden Method
