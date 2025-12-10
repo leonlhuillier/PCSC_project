@@ -3,7 +3,8 @@
 
 #include "Eigenvalue.h"
 
-class QRMethod : public Eigenvalue {
+template<typename Scalar>
+class QRMethod : public Eigenvalue<Scalar> {
 public:
     // Constructors and Destructor
     QRMethod();
