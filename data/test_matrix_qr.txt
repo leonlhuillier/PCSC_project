@@ -1,7 +1,6 @@
-1.0 2.0 3.0
-4.0 5.0 6.0
-7.0 8.0 9.0
-Algorithm: QRMethod
-MaxIterations: 1000
-Tolerance: 1e-6
-Shift: 0.0
+1+2i,3+4i,5+6i
+7+8i,9+10i,11+12i
+13+14i,15+16i,17+18i
+Algorithm,QRMethod
+MaxIterations,1000
+Tolerance,1.00E-10

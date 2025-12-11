@@ -25,6 +25,16 @@ public:
                       const Eigen::VectorXcd& eigenvector,
                       int iterations,
                       bool converged) const = 0;
+
+    virtual void writeAll(const Eigen::VectorXd& eigenvalues,
+                         const Eigen::MatrixXd& eigenvectors,
+                         int iterations,
+                         bool converged) const = 0;
+
+    virtual void writeAll(const Eigen::VectorXcd& eigenvalues,
+                         const Eigen::MatrixXcd& eigenvectors,
+                         int iterations,
+                         bool converged) const = 0;
 };
 
 
@@ -41,6 +51,16 @@ public:
               const Eigen::VectorXcd& eigenvector,
               int iterations,
               bool converged) const override;
+
+    void writeAll(const Eigen::VectorXd& eigenvalues,
+                 const Eigen::MatrixXd& eigenvectors,
+                 int iterations,
+                 bool converged) const override;
+
+    void writeAll(const Eigen::VectorXcd& eigenvalues,
+                 const Eigen::MatrixXcd& eigenvectors,
+                 int iterations,
+                 bool converged) const override;
 };
 
 class TextFileWriter : public Writer {
@@ -56,6 +76,16 @@ public:
               const Eigen::VectorXcd& eigenvector,
               int iterations,
               bool converged) const override;
+
+    void writeAll(const Eigen::VectorXd& eigenvalues,
+                 const Eigen::MatrixXd& eigenvectors,
+                 int iterations,
+                 bool converged) const override;
+
+    void writeAll(const Eigen::VectorXcd& eigenvalues,
+                 const Eigen::MatrixXcd& eigenvectors,
+                 int iterations,
+                 bool converged) const override;
 };
 
 #endif // WRITER_H

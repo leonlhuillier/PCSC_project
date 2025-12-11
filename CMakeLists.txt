@@ -25,14 +25,13 @@ FetchContent_MakeAvailable(Eigen)
 # ========================================
 include_directories(${CMAKE_SOURCE_DIR}/header)
 
-# ========================================
-# COMMON SOURCES (pour éviter la répétition)
-# ========================================
+
 set(COMMON_SOURCES
         Source/Parameters.cpp
         Source/Eigenvalue.cpp
         Source/PowerMethod.cpp
         Source/ShiftedInversePowerMethod.cpp
+        Source/QRMethod.cpp
         Source/Reader.cpp
         Source/CSVReader.cpp
         Source/TextFileReader.cpp
@@ -66,6 +65,13 @@ add_executable(test_ShiftInversepm
         ${COMMON_SOURCES}
 )
 target_link_libraries(test_ShiftInversepm PRIVATE Eigen3::Eigen)
+
+# Test QR Method
+add_executable(test_QRMethod
+        Source/test_QRMethod.cpp
+        ${COMMON_SOURCES}
+)
+target_link_libraries(test_QRMethod PRIVATE Eigen3::Eigen)
 
 # ========================================
 # MAIN EXECUTABLE

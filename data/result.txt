@@ -1,15 +1,25 @@
-========================================
-     EIGENVALUE COMPUTATION RESULTS     
-========================================
-
+  QR METHOD - ALL EIGENVALUES/VECTORS  
 Convergence Status: CONVERGED
-Number of Iterations: 26
+Number of Iterations: 24
 
-Dominant Eigenvalue: 1.26795
+ALL EIGENVALUES:
+  lambda_1 = 32.8215
+  lambda_2 = -15.3874
+  lambda_3 = 5.56593
 
-Corresponding Eigenvector:
-  v[0] = -0.211325
-  v[1] = -0.57735
-  v[2] = -0.788675
+ALL EIGENVECTORS:
 
-========================================
+Eigenvector v_1:
+  v[0] = 0.724726
+  v[1] = 0.643433
+  v[2] = 0.246508
+
+Eigenvector v_2:
+  v[0] = -0.605779
+  v[1] = 0.765461
+  v[2] = -0.217028
+
+Eigenvector v_3:
+  v[0] = -0.328336
+  v[1] = 0.0079565
+  v[2] = 0.944528

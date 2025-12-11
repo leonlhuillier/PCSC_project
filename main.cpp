@@ -2,6 +2,7 @@
 #include "ShiftedInversePowerMethod.h"
 #include "CSVReader.h"
 #include "TextFileReader.h"
+#include "QRMethod.h"
 #include "Writer.h"
 #include "Parameters.h"
 #include <iostream>
@@ -38,6 +39,7 @@ void runComputationDouble(const std::string& inputFile) {
     params.display();
 
     std::string algorithm = params.getAlgorithm();
+
 
 
 
@@ -85,7 +87,40 @@ void runComputationDouble(const std::string& inputFile) {
         writer->write(sipm.getEigenvalue(), sipm.getEigenvector(),
                      sipm.getIterationCount(), sipm.hasConverged());
 
-    } else {
+    }
+    else if (algorithm == "qr" || algorithm == "QRMethod") {
+        QRMethod<double> qr(matrix, params);
+        qr.solve();
+
+        std::cout << "\nResults (QR Method)" << std::endl;
+        std::cout << "Iterations: " << qr.getIterationCount() << std::endl;
+        std::cout << "Converged: " << (qr.hasConverged() ? "Yes" : "No") << std::endl;
+
+        // Afficher TOUTES les valeurs propres trouvées
+        std::cout << "\nAll Eigenvalues found:" << std::endl;
+        Eigen::VectorXd allEigenvalues = qr.getAllEigenvalues();
+
+        for (int i = 0; i < allEigenvalues.size(); ++i) {
+            std::cout << "  λ" << (i+1) << " = " << allEigenvalues(i) << std::endl;
+        }
+
+        std::cout << "\nAll Eigenvectors:" << std::endl;
+        Eigen::MatrixXd allEigenvectors = qr.getAllEigenvectors();
+
+        for (int i = 0; i < allEigenvectors.cols(); ++i) {
+            std::cout << "\n  v_" << (i+1) << " =" << std::endl;
+            for (int j = 0; j < allEigenvectors.rows(); ++j) {
+                std::cout << "    " << allEigenvectors(j, i) << std::endl;
+            }
+        }
+
+        // Pour le Writer, on utilise la valeur propre dominante
+        writer->writeAll(qr.getAllEigenvalues(), qr.getAllEigenvectors(),
+                    qr.getIterationCount(), qr.hasConverged());
+
+    }
+
+    else {
         delete writer;
         throw std::runtime_error("Unknown algorithm: " + algorithm);
     }
@@ -123,6 +158,7 @@ void runComputationComplex(const std::string& inputFile) {
     params.display();
 
     std::string algorithm = params.getAlgorithm();
+
 
     // Demander le format de sortie
     std::cout << "  \nSELECT OUTPUT FORMAT" << std::endl;
@@ -169,7 +205,28 @@ void runComputationComplex(const std::string& inputFile) {
         writer->write(sipm.getEigenvalue(), sipm.getEigenvector(),
                      sipm.getIterationCount(), sipm.hasConverged());
 
-    } else {
+    }
+    else if (algorithm == "qr" || algorithm == "QRMethod") {
+        QRMethod<std::complex<double>> qr(matrix, params);
+        qr.solve();
+
+        std::cout << "\nResults (QR Method)" << std::endl;
+        std::cout << "Iterations: " << qr.getIterationCount() << std::endl;
+        std::cout << "Converged: " << (qr.hasConverged() ? "Yes" : "No") << std::endl;
+
+        // Afficher TOUTES les valeurs propres trouvées
+        std::cout << "\nAll Eigenvalues found:" << std::endl;
+        Eigen::VectorXcd allEigenvalues = qr.getAllEigenvalues();
+
+        for (int i = 0; i < allEigenvalues.size(); ++i) {
+            std::cout << "  λ" << (i+1) << " = " << allEigenvalues(i) << std::endl;
+        }
+
+
+        writer->writeAll(qr.getAllEigenvalues(), qr.getAllEigenvectors(),
+                    qr.getIterationCount(), qr.hasConverged());
+    }
+    else {
         delete writer;
         throw std::runtime_error("Unknown algorithm: " + algorithm);
     }
