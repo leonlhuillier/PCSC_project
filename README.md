@@ -1,22 +1,27 @@
 # PCSC_project
 
-- **Requirements:**
+## Requirements:
   - Compiler C++17 or above
   - [CMake](https://cmake.org/download/) version 3.10 or above
-
-- **Dependency :**
+    
+## Dependency :
   - [Eigen Library](https://libeigen.gitlab.io/?title=Main_Page) imported
 
-- **Download the project :** Copy this into your terminal : git clone https://github.com/leonlhuillier/PCSC_project.git    
+## Download the project : 
+Copy this into your terminal : git clone https://github.com/leonlhuillier/PCSC_project.git 
 
- - **File Composition :** Each file **must** contains each of the following parameters to be calculated :
+## Compile :
+Run this in your terminal to compile your project :`./source/main`
+
+## File Composition :
+Each file **must** contains each of the following parameters to be calculated :
    - Matrix of real or complex number
    - Method that we want to use
    - Tolerance
    - Maximum Iterations
    - Shift (optional)
 
-- **Programm execution :**
+## Programm execution :
 
 1- The programm gets the input file which contains all the matrix information, and all the configuration settings such as the method name, the tolerance, the maximum number of iterations or the shift.
 
