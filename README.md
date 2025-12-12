@@ -7,14 +7,14 @@
 - **Dependency :**
   - [Eigen Library](https://libeigen.gitlab.io/?title=Main_Page) imported
 
-- **Download the project :** Copy this into your terminal : git clone    
+- **Download the project :** Copy this into your terminal : git clone https://github.com/leonlhuillier/PCSC_project.git    
 
- - **File Composition :** Each file **must** contains each of the following to be calculated :
+ - **File Composition :** Each file **must** contains each of the following parameters to be calculated :
    - Matrix of real or complex number
    - Method that we want to use
    - Tolerance
    - Maximum Iterations
-   - Shift
+   - Shift (optional)
 
 - **Programm execution :**
 
