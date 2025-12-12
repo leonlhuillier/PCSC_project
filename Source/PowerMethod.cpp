@@ -18,9 +18,9 @@ PowerMethod<Scalar>::~PowerMethod() {}
 //Constructor
 template<typename Scalar>
 PowerMethod<Scalar>::PowerMethod(const Matrix& matrix, const Parameters& params)
-    : Eigenvalue<Scalar>(matrix, params) {} // Appelle le constructeur de la classe mère
+    : Eigenvalue<Scalar>(matrix, params) {}
 
-// The PowerMethod class must be templated to work with different Scalar types
+// Template to work with different Scalar types
 template<typename Scalar>
 void PowerMethod<Scalar>::solve() {
     // Define aliases for the types inherited from the base class
@@ -71,6 +71,6 @@ void PowerMethod<Scalar>::solve() {
     }
 }
 
-// Ensure the common types are explicitly instantiated
+
 template class PowerMethod<double>;
 template class PowerMethod<std::complex<double>>;

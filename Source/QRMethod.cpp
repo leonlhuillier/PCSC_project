@@ -24,7 +24,7 @@ QRMethod<Scalar>::QRMethod(const Matrix& matrix, const Parameters& params)
     : Eigenvalue<Scalar>(matrix, params) {} // Appelle le constructeur de la classe mère
 
 
-// The implementation must be defined using the template syntax
+// Templates to handle real and complex
 template<typename Scalar>
 void QRMethod<Scalar>::solve() {
     // Define aliases for the types inherited from the base class
@@ -63,25 +63,23 @@ void QRMethod<Scalar>::solve() {
 
         Q_accumulated = Q_accumulated * Q;
 
-        // 3. Check for convergence (Standard check for QR: sub-diagonal elements approach zero)
-        // We check the magnitude of the sub-diagonal element in the bottom-right corner A(n-1, n-2).
-        // If the matrix is sufficiently upper-triangular, we have found an eigenvalue.
+        // 3. Check for convergence: all sub-diagonal elements should approach zero
+        // When the matrix becomes sufficiently upper-triangular, eigenvalues appear on the diagonal
 
-        // Note: For full convergence (all eigenvalues), one would check all sub-diagonal elements.
-        //Scalar sub_diagonal_element = A_next(n - 1, n - 2);
-
+        // Find the maximum magnitude of all sub-diagonal elements
         double max_subdiag = 0.0;
         for (int i = 0; i < n - 1; ++i) {
-            double val = std::abs(A_next(i + 1, i));  // Élément sous-diagonal
+            double val = std::abs(A_next(i + 1, i));  //Sub diagonal element
             if (val > max_subdiag) {
                 max_subdiag = val;
             }
         }
 
+        // Check if largest sub-diagonal element is below tolerance
         // std::abs handles the magnitude for both real and complex types
         if (std::abs(max_subdiag) < this->mTolerance) {
             this->mConverged = true;
-            A = A_next; // Update A to store the final result before break
+            A = A_next;  // Store the final quasi-triangular matri
             break;
         }
 
@@ -111,13 +109,6 @@ void QRMethod<Scalar>::solve() {
     mAllEigenvectors = Q_accumulated;
     this->mEigenvector = Q_accumulated.col(max_idx);
 
-    // The eigenvalues are now (or are close to) the diagonal entries of A.
-    // We store the top-left one as the primary result.
-    //this->mEigenvalue = A(0, 0);
-
-    // Simple QR iteration does not easily yield the eigenvector; we reset it.
-    //this->mEigenvector.resize(n);
-    //this->mEigenvector.setZero();
 
     if (this->mConverged) {
         std::cout << "QRMethod converged (eigenvalues on diagonal) after " << this->mIterationCount << " iterations." << std::endl;

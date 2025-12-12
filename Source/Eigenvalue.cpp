@@ -3,14 +3,13 @@
 #include <cmath>
 #include <iostream>
 #include <complex>
-
-// --- Template Specialization for double (RealScalar) ---
+// Template Implementation
 template class Eigenvalue<double>;
 template class Eigenvalue<std::complex<double>>;
 
-// --- Template Implementation ---
 
-// Constructor - Initializes the common attributes using the Parameters object
+// Constructor
+// Template to work with different Scalar types particulary for matrices
 template<typename Scalar>
 Eigenvalue<Scalar>::Eigenvalue(const Matrix& matrix, const Parameters& params)
     : mMatrix(matrix),

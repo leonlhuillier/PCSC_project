@@ -50,6 +50,5 @@ int main() {
         std::cerr << "Error " << e.what() << std::endl;
         return 1;
     }
-    //llms
 }
 

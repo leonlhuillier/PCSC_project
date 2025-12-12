@@ -26,20 +26,20 @@ CSVReader<Scalar>::~CSVReader() {}
 
 
 
-//Pour qu'il prend pas en compte les espaces vide dans les fichiers
+// Function to remove leading and trailing whitespace
 template<typename Scalar>
-std::string CSVReader<Scalar>::trim(const std::string& str) { //llms
-    if (str.empty()) return str; //Si la chaîne est vide, on la retourne directement
+std::string CSVReader<Scalar>::trim(const std::string& str) { // this function is generated with the help of  llms
+    if (str.empty()) return str; // If the string is empty, return it directly
 
     // Find first non-space
     int start = 0;
-    while (start < str.length() && std::isspace(str[start])) { //On cherche le premier caractère qui n’est pas un espace
+    while (start < str.length() && std::isspace(str[start])) {
         start++;
     }
 
     // Find last non-space
     int end = str.length() - 1;
-    while (end >= start && std::isspace(str[end])) { //On cherche le dernier caractère non-espace
+    while (end >= start && std::isspace(str[end])) {
         end--;
     }
 
@@ -65,7 +65,7 @@ typename CSVReader<Scalar>::Matrix CSVReader<Scalar>::ReadMatrix() {
         }
 
 
-        //Pour chaque ligne, on découpe avec la virgule , et on convertit chaque morceau en double, pour recuperer les lignes de la matric
+        //For each line, split by delimiter and convert each value to Scalar type
         std::vector<Scalar> row;
         std::stringstream ss(line);
         std::string value;
@@ -73,7 +73,7 @@ typename CSVReader<Scalar>::Matrix CSVReader<Scalar>::ReadMatrix() {
         char delimiter = (line.find(';') != std::string::npos) ? ';' : ',';
 
         while (std::getline(ss, value, delimiter)) {
-            value=trim(value); //enlever espaces entre les nombres
+            value=trim(value); //Remove spaces between numbers
             if (!value.empty()) {
                 row.push_back(std::stod(value));
             }

@@ -18,12 +18,11 @@ ShiftedInversePowerMethod<Scalar>::~ShiftedInversePowerMethod(){}
 //Constructor
 template<typename Scalar>
 ShiftedInversePowerMethod<Scalar>::ShiftedInversePowerMethod(const Matrix& matrix, const Parameters& params)
-    : Eigenvalue<Scalar>(matrix, params) {} // Appelle le constructeur de la classe mère
+    : Eigenvalue<Scalar>(matrix, params) {}
 
 
 template<typename Scalar>
 void ShiftedInversePowerMethod<Scalar>::solve() {
-    // Define aliases for the types inherited from the base class
     using Matrix = typename Eigenvalue<Scalar>::Matrix;
     using Vector = typename Eigenvalue<Scalar>::Vector;
 
@@ -40,7 +39,7 @@ void ShiftedInversePowerMethod<Scalar>::solve() {
     const double epsilon = 1e-10;
     if (std::abs(det) < epsilon) {
         std::cerr << "The matrix (A - mu*I) is singular (shift is likely an exact eigenvalue). Choose a different shift mu." << std::endl;
-        return; // Exit the solve function immediately
+        return;
     }
 
     Vector x_k = this->mEigenvector; // Current vector (x_k)
@@ -73,7 +72,7 @@ void ShiftedInversePowerMethod<Scalar>::solve() {
         Scalar lambda_k_plus_1 = this->mShift + (Scalar(1.0) / mu_prime_k_plus_1);
 
         // 5. Check for convergence based on the inverse eigenvalue (mu_prime)
-        // This is typically more stable than checking lambda_A directly.
+        // This is more stable than checking lambda_A directly.
         if (std::abs(mu_prime_k_plus_1 - mu_prime_k) < this->mTolerance) {
             this->mConverged = true;
             this->mEigenvalue = lambda_k_plus_1;
@@ -94,6 +93,6 @@ void ShiftedInversePowerMethod<Scalar>::solve() {
     }
 }
 
-// Explicit instantiations for common types (as discussed in Eigenvalue.cpp)
+
 template class ShiftedInversePowerMethod<double>;
 template class ShiftedInversePowerMethod<std::complex<double>>;

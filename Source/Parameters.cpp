@@ -18,6 +18,7 @@ void Parameters::setMatrixFile(const std::string& filename) {
     }
     mMatrixFile = filename;
 }
+//detect the algorithm
 void Parameters::setAlgorithm(const std::string& algorithm) {
     if (algorithm == "PowerMethod" ||
         algorithm == "ShiftedInversePowerMethod" ||
