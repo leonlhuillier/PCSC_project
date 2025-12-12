@@ -5,9 +5,8 @@ project(PCSC_project)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# ========================================
+
 # Fetch Eigen from GitLab
-# ========================================
 include(FetchContent)
 FetchContent_Declare(
         Eigen
@@ -20,9 +19,7 @@ set(BUILD_TESTING OFF CACHE BOOL "" FORCE)
 set(EIGEN_BUILD_PKGCONFIG OFF CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(Eigen)
 
-# ========================================
-# Add directories for headers
-# ========================================
+
 include_directories(${CMAKE_SOURCE_DIR}/header)
 
 
@@ -38,9 +35,6 @@ set(COMMON_SOURCES
         Source/Writer.cpp
 )
 
-# ========================================
-# TEST EXECUTABLES
-# ========================================
 
 # Test Reader
 add_executable(test_reader
@@ -73,9 +67,7 @@ add_executable(test_QRMethod
 )
 target_link_libraries(test_QRMethod PRIVATE Eigen3::Eigen)
 
-# ========================================
-# MAIN EXECUTABLE
-# ========================================
+
 add_executable(PCSC_project
         main.cpp
         ${COMMON_SOURCES}
